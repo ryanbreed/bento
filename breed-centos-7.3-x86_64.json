@@ -93,7 +93,7 @@
     },
     {
       "type":"compress",
-      "output":"builds/{{ user `box_basename`}}.{{.Provider}}.tar.gz"
+      "output": "builds/{{user `box_basename`}}.{{.Provider}}.tar.gz"
     },
     {
       "type":"manifest",
@@ -131,7 +131,7 @@
     "cpus": "2",
     "disk_size": "10240",
     "git_revision": "0.1.0",
-    "headless": "false",
+    "headless": "true",
     "http_proxy": "http://192.168.1.238:8080",
     "https_proxy": "http://192.168.1.238:8080",
     "iso_checksum": "c455ee948e872ad2194bdddd39045b83634e8613249182b88f549bb2319d97eb",
