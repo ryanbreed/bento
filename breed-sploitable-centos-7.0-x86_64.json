@@ -42,6 +42,11 @@
     },
     {
       "environment_vars": [
+        "BENTO_NAME={{user `name`}}",
+        "BENTO_BOX={{user `box_basename`}}",
+        "BENTO_TEMPLATE={{user `template`}}",
+        "BENTO_VERSION={{user `version`}}",
+        "BENTO_TIMESTAMP={{user `build_timestamp`}}",
         "HOME_DIR=/home/vagrant",
         "http_proxy={{user `http_proxy`}}",
         "https_proxy={{user `https_proxy`}}",
@@ -60,7 +65,7 @@
     }
   ],
   "variables": {
-    "box_basename": "centos-7.0",
+    "box_basename": "sploitable-centos-7.0",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "git_revision": "__unknown_git_revision__",
     "headless": "false",
@@ -73,7 +78,7 @@
     "metadata": "floppy/dummy_metadata.json",
     "mirror": "file:///Users/ryan/Downloads/",
     "mirror_directory": "iso",
-    "name": "centos-7.0",
+    "name": "sploitable-centos-7.0",
     "no_proxy": "{{env `no_proxy`}}",
     "template": "breed-sploitable-centos-7.0-x86_64",
     "version": "2.1.TIMESTAMP"
