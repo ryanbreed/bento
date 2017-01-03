@@ -1,0 +1,5 @@
+## This is to check if the system is making or recieving connections
+## externally
+-a always,exit -F arch=b64 -S connect -F key=external-access -F exit!=-EINPROGRESS -F exit!=-ENOENT
+-a always,exit -F arch=b64 -S accept  -F key=external-access
+-a always,exit -F arch=b64 -S listen,socket,bind -F key=net-experimental

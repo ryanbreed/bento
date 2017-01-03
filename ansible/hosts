@@ -1,0 +1,3 @@
+[el7]
+c7audit ansible_user=vagrant
+ninja   ansible_user=root
