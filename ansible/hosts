@@ -1,3 +1,11 @@
 [el7]
-c7audit ansible_user=vagrant
-ninja   ansible_user=root
+c7audit    ansible_user=vagrant
+sploitable ansible_user=vagrant
+ninja      ansible_user=root
+
+[log-clients]
+c7audit
+sploitable
+
+[debian]
+raspberrypi ansible_user=pi

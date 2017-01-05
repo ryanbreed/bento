@@ -1,0 +1,5 @@
+## Put your own watches after this point
+# -a exit,always -F path=file -F perm=rwxa -F key=text
+# -a exit,always -F dir=directory -F perm-rwxa -F key=text
+-a exit,always -F path=/etc/hosts -F perm=w -F key=experimental-file-hosts
+-a exit,always -F path=/usr/bin/curl -F perm=x -F key=experimental-file-curl

@@ -1,0 +1,8 @@
+- hosts: log-clients
+  tasks:
+  - name: configure rsyslog destination
+    copy: src=logging/files/99-rsyslog-remote.conf dest=/etc/rsyslog.d/ mode=0644 owner=root group=root
+    notify: reload rsyslog
+  handlers:
+    - name: reload rsyslog
+      systemd: name=rsyslog state=restarted
