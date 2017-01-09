@@ -1,7 +1,0 @@
-## This is to check if the system is making or recieving connections
-## externally
--a always,exit -F arch=b64 -S connect -F key=external-access 
--a always,exit -F arch=b64 -S accept  -F key=external-access
--a always,exit -F arch=b64 -S listen  -F key=experimental-listen
--a always,exit -F arch=b64 -S socket  -F key=experimental-socket
--a always,exit -F arch=b64 -S bind    -F key=experimental-bind

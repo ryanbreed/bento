@@ -1,5 +1,0 @@
-## This is for don't audit rules
--a never,user -F subj_type=crond_t
-#-a never,exit -S all -F exe=/usr/bin/vmtoolsd
-#-a never,exit -S all -F exe=/usr/sbin/chronyd
-#-a never,exit -F arch=b64 -S adjtimex -F exe=/usr/bin/vmtoolsd
