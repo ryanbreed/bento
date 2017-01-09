@@ -1,0 +1,10 @@
+- name: the sneaky bastard
+  hosts: all
+  tasks:
+  - include: rsyslog.yml
+  - include: auditd.yml
+  handlers:
+    - name: restart rsyslog
+      systemd: service=rsyslog state=restarted
+    - name: generate audit rules
+      command: /usr/sbin/augenrules --load

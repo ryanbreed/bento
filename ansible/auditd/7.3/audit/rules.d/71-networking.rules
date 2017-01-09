@@ -1,0 +1,12 @@
+## This is to check if the system is making or recieving connections
+## externally
+-a always,exit -F arch=b64 -S connect    -F key=ioc-external-access -F exit!=-EINPROGRESS -F exit!=-ENOENT
+-a always,exit -F arch=b64 -S accept     -F key=ioc-external-access
+-a always,exit -F arch=b64 -S listen     -F key=experimental
+-a always,exit -F arch=b64 -S socket     -F key=experimental
+-a always,exit -F arch=b32 -S connect    -F key=ioc-external-access -F exit!=-EINPROGRESS -F exit!=-ENOENT
+-a always,exit -F arch=b32 -S listen     -F key=experimental
+-a always,exit -F arch=b32 -S socket     -F key=experimental
+-a always,exit -F arch=b32 -S socketcall -F key=experimental
+-a always,exit -F arch=b32 -S bind       -F key=ioc-badbind -F exit<0
+-a always,exit -F arch=b64 -S bind       -F key=ioc-badbind -F exit<0

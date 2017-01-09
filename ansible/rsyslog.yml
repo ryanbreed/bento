@@ -1,0 +1,4 @@
+- name: configure rsyslog destination
+  copy: src=rsyslog/99-rsyslog-remote.conf dest=/etc/rsyslog.d/ mode=0644 owner=root group=root
+- name: enable ntpd
+  systemd: service=ntpd state=started enabled=yes
