@@ -1,0 +1,21 @@
+- hosts: all
+  gather_facts: True
+  name: stub runtime for ruby
+  tasks:
+    - name: ensure app base
+      file: path={{item}} state=directory mode=0755 owner=root group=root mode=0755
+      with_items:
+        - /app
+        - /app/ruby
+        - /app/ruby/etc
+
+    - name: install app-ruby user
+      user: name=app-ruby home="/app/ruby" shell="/sbin/nologin" createhome=False
+
+  roles:
+    - role: geerlingguy.ruby
+      ruby_install_from_source: True
+      ruby_version: 2.3.3
+      ruby_download_url: http://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz
+      ruby_install_prefix: /app/ruby
+      ruby_install_bundler: False

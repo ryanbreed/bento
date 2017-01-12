@@ -48,13 +48,6 @@
       "vm_name": "{{ user `template` }}"
     }
   ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "output": "builds/{{user `box_basename`}}.{{.Provider}}-{{user `version`}}.box",
-      "vagrantfile_template":"vagrantfile_templates/centos-7.3.rb"
-    }
-  ],
   "provisioners": [
     {
       "environment_vars": [
@@ -82,7 +75,18 @@
     },
     {
       "type": "ansible",
-      "playbook_file":"./ansible/sneaky_audit.yml"
+      "playbook_file":"./ansible/audit_stubs.yml"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "builds/{{user `box_basename`}}.{{.Provider}}-{{user `version`}}.box",
+      "vagrantfile_template":"vagrantfile_templates/centos-7.3.rb"
+    },
+    {
+      "type":"compress",
+      "output":"/data/export/images/packer_{{.BuilderType}}-{{user `box_basename`}}.tar.gz"
     }
   ],
   "variables": {
@@ -105,6 +109,6 @@
     "name": "centos-7.3",
     "no_proxy": "{{env `no_proxy`}}",
     "template": "breed-centos-7.3-x86_64",
-    "version": "0.2.0"
+    "version": "0.2.1"
   }
 }

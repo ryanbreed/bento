@@ -1,8 +1,8 @@
 Vagrant.require_version '>= 1.9.1'
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos-7.3"
-  config.vm.hostname = "vm-test"
+  #config.vm.box = "centos-7.3"
+  #config.vm.hostname = "vm-test"
   #config.vm.network :public_network,
     #dev: "lanbr0",
     #type: "bridge",

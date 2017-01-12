@@ -1,0 +1,83 @@
+---
+- name: Install packages required to build ruby (RedHat).
+  yum: "name={{ item }} state=present"
+  with_items:
+    - gcc
+    - make
+    - readline-devel
+    - libyaml-devel
+    - zlib-devel
+    - openssl-static
+  when: ansible_os_family == 'RedHat'
+
+- name: Update apt cache (Debian).
+  apt: update_cache=yes cache_valid_time=86400
+  when: ansible_os_family == 'Debian'
+
+- name: Install packages required to build ruby (Debian).
+  apt: "name={{ item }} state=present"
+  with_items:
+    - build-essential
+    - zlib1g-dev
+    - libssl-dev
+    - libyaml-dev
+    - libreadline6-dev
+    - zlib1g-dev
+    - libncurses5-dev
+    - libffi-dev
+    - libgdbm3
+    - libgdbm-dev
+  when: ansible_os_family == 'Debian'
+
+- name: check workspace directory
+  stat: path={{ ruby_install_workspace }}
+  register: st_ruby_install_workspace
+
+- name: make workspace directory
+  file: path={{ ruby_install_workspace }} state=directory owner=root group=root mode=0755
+  #when: st_ruby_install_workspace.stat.isdir is defined and st_ruby_install_workspace.isdir
+
+- name: Download ruby.
+  get_url:
+    url: "{{ ruby_download_url }}"
+    dest: "{{ ruby_install_workspace }}/ruby-{{ ruby_version }}.tar.gz"
+  #when: st_ruby_install_workspace.stat.isdir is defined and st_ruby_install_workspace.isdir
+
+- name: Extract ruby.
+  unarchive:
+    src: "{{ ruby_install_workspace }}/ruby-{{ ruby_version }}.tar.gz"
+    dest: "{{ ruby_install_workspace }}/"
+    copy: no
+  #when: st_ruby_install_workspace.stat.isdir is defined and st_ruby_install_workspace.isdir
+
+- name: Build ruby.
+  command: >
+    {{ item }}
+    chdir={{ ruby_install_workspace }}/ruby-{{ ruby_version }}
+    creates={{ ruby_install_prefix }}/bin/ruby
+  with_items:
+    - ./configure --enable-shared --prefix={{ ruby_install_prefix }}
+    - make
+    - make install
+  #when: st_ruby_install_workspace.stat.isdir is defined and st_ruby_install_workspace.isdir
+- name: configure runtime
+  file: path={{ ruby_install_prefix }}/etc state=directory owner=root group=root mode=0755
+- name: install gemrc
+  template: src=gemrc.j2 dest={{ ruby_install_prefix }}/etc/gemrc owner=root group=root mode=0755
+- name: install bundler
+  command: {{ ruby_install_prefix }}/bin/gem install bundler
+
+- name: Add ruby symlinks.
+  file:
+    src: "/{{ ruby_install_prefix }}/bin/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - erb
+    - gem
+    - irb
+    - rake
+    - rdoc
+    - ruby
+  when: False
