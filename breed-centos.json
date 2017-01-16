@@ -81,7 +81,7 @@
   "post-processors": [
     {
       "type": "vagrant",
-      "output": "builds/{{user `box_basename`}}.{{.Provider}}-{{user `version`}}.box",
+      "output": "builds/{{user `box_basename`}}.box",
       "vagrantfile_template":"vagrantfile_templates/centos-7.3.rb"
     },
     {
@@ -90,7 +90,7 @@
     }
   ],
   "variables": {
-    "box_basename": "centos-7.3",
+    "box_basename": "centos",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
     "disk_size": "10240",
@@ -109,6 +109,6 @@
     "name": "centos-7.3",
     "no_proxy": "{{env `no_proxy`}}",
     "template": "breed-centos-7.3-x86_64",
-    "version": "0.2.1"
+    "version": "0.3.0"
   }
 }

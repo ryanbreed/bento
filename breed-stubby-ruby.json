@@ -66,6 +66,6 @@
     "memory": "1024",
     "metadata": "floppy/dummy_metadata.json",
     "no_proxy": "{{env `no_proxy`}}",
-    "version": "0.1.0"
+    "version": "0.2.0"
   }
 }

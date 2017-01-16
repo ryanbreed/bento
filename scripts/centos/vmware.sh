@@ -23,4 +23,8 @@ vmware-iso|vmware-vmx)
     rm -rf /tmp/VMwareTools-10.1.0-4449150.tar.gz;
     rm -f $HOME_DIR/*.iso;
     ;;
+qemu)
+  systemctl disable open-vm-tools
+  systemctl enable qemu-guest-agent
+  ;;
 esac

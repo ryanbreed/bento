@@ -6,5 +6,5 @@ else
   SED="/usr/bin/sed"
   MKCONFIG="/usr/sbin/grub2-mkconfig"
 fi
-$SED -i -E -e 's#GRUB_CMDLINE_LINUX=.*#GRUB_CMDLINE_LINUX="rd.lvm.lv=cl/root rd.lvm.lv=cl/swap text nomodeset ipv6.disable=1"#' /etc/default/grub
+$SED -i -E -e 's#GRUB_CMDLINE_LINUX=.*#GRUB_CMDLINE_LINUX="rd.lvm.lv=cl/root rd.lvm.lv=cl/swap text modeset ipv6.disable=1"#' /etc/default/grub
 $MKCONFIG -o /boot/grub2/grub.cfg

@@ -18,3 +18,6 @@ if grep -q -E "^[[:space:]]*GSSAPIAuthentication" "$SSHD_CONFIG"; then
 else
     echo "$GSSAPI" >>"$SSHD_CONFIG"
 fi
+echo 'AddressFamily inet' >> /etc/ssh/sshd_config
+echo 'PermitRootLogin without-password' >> /etc/ssh/sshd_config
+echo 'X11Forwarding yes' >> /etc/ssh/sshd_config

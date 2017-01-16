@@ -65,7 +65,7 @@
 - name: install gemrc
   template: src=gemrc.j2 dest={{ ruby_install_prefix }}/etc/gemrc owner=root group=root mode=0755
 - name: install bundler
-  command: {{ ruby_install_prefix }}/bin/gem install bundler
+  command: "{{ ruby_install_prefix }}/bin/gem install bundler"
 
 - name: Add ruby symlinks.
   file:
