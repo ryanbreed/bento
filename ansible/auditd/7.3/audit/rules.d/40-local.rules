@@ -1,1 +1,0 @@
--a exit,always -F path=/var/tmp/canary -p rwxa -k canary

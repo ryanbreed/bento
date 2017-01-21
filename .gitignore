@@ -12,3 +12,4 @@ packer.log
 .kitchen.*.yml
 Gemfile.lock
 /log/
+/ansible/roles_galaxy/

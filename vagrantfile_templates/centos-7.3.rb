@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
     mode: "bridge",
     model_type: "virtio"
   config.vm.provider :libvirt do |libvirt|
-    libvirt.storage_pool_name = "disk"
+    libvirt.storage_pool_name = "vagrant"
     libvirt.volume_cache = "unsafe"
     libvirt.driver = "kvm"
     libvirt.memory = 1024

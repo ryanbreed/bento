@@ -2,6 +2,7 @@
 - name: Install packages required to build ruby (RedHat).
   yum: "name={{ item }} state=present"
   with_items:
+    - git
     - gcc
     - make
     - readline-devel
