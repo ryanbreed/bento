@@ -25,8 +25,6 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "inline": [
         "nmcli g hostname packer-stubby-ruby",
-        "systemctl restart rsyslog",
-        "systemctl reload auditd",
         "shutdown -r now"
       ]
     },
@@ -35,8 +33,7 @@
       "playbook_file":"./ansible/ruby.yml",
       "extra_arguments": [
         "--become",
-        "--become-method=sudo",
-        "-vvv"
+        "--become-method=sudo"
       ],
       "pause_before":"10s"
     }
@@ -52,7 +49,8 @@
       "type":"shell-local",
       "inline": [
         "cp -vf packer-ruby-qemu/stubby-ruby /data/export/images",
-        "md5sum < /data/export/images/stubby-ruby | sed -e 's/-/stubby-ruby/' > /data/export/images/stubby-ruby.md5"
+        "md5sum < /data/export/images/stubby-ruby | sed -e 's/-/stubby-ruby/' > /data/export/images/stubby-ruby.md5", 
+        "md5sum < /data/export/boxes/stubby-ruby.libvirt.box | sed -e 's/-/stubby-ruby.libvirt.box/' > /data/export/boxes/stubby-ruby.libvirt.box.md5"
       ]
     }
   ],

@@ -1,4 +1,4 @@
-- name: the sneaky bastard
+- name: base logging config
   hosts: all
   tasks:
   - include: rsyslog.yml

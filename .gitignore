@@ -13,3 +13,5 @@ packer.log
 Gemfile.lock
 /log/
 /ansible/roles_galaxy/
+**/*.swp
+/ansible/ssh/keys/*.pub
