@@ -1,6 +1,28 @@
 {
   "builders": [
     {
+      "type": "amazon-instance",
+      "access_key": "{{user `packer_ak`}}",
+      "secret_key": "{{user `packer_sk`}}",
+      "region": "us-west-2",
+      "instance_type": "t2.micro",
+      "ssh_username": "centos",
+      "account_id": "{{ user `aws_account`}}",
+      "s3_bucket":  "packer-images-ryanbreed",
+      "source_ami": "ami-d2c924b2",
+      "ami_name": "packer-ryanbreed-centos {{timestamp}}",
+      "x509_cert_path":   "{{ user `aws_cert` }}",
+      "x509_key_path":    "{{ user `aws_key` }}",
+      "x509_upload_path": "/tmp",
+      "vpc_id": "vpc-389a615c",
+      "subnet_id": "subnet-71cdfe28",
+      "ami_description": "base image",
+      "security_group_ids": ["sg-ef62ed97"],
+      "ssh_agent_auth": true,
+      "ssh_keypair_name": "packer-build",
+      "ssh_pty": true
+    },
+    {
       "boot_command": [
         "<up><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
@@ -50,11 +72,26 @@
   ],
   "provisioners": [
     {
+      "type":"shell",
+      "only":["amazon-instance"],
       "environment_vars": [
         "HOME_DIR=/home/vagrant",
-        "http_proxy={{user `http_proxy`}}",
-        "https_proxy={{user `https_proxy`}}",
-        "no_proxy={{user `no_proxy`}}",
+        "BENTO_NAME={{ user `name`}}",
+        "BENTO_BOX={{ user `box_basename`}}",
+        "BENTO_TEMPLATE={{ user `template`}}",
+        "BENTO_VERSION={{ user `version`}}",
+        "BENTO_TIMESTAMP={{ user `build_timestamp`}}"
+      ],
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "scripts": [
+        "scripts/aws/selinux.sh",
+        "scripts/aws/packages.sh",
+        "scripts/aws/vagrant.sh"
+      ]
+    },
+    {
+      "environment_vars": [
+        "HOME_DIR=/home/vagrant",
         "BENTO_NAME={{ user `name`}}",
         "BENTO_BOX={{ user `box_basename`}}",
         "BENTO_TEMPLATE={{ user `template`}}",
@@ -66,7 +103,6 @@
         "scripts/common/sshd.sh",
         "scripts/common/metadata.sh",
         "scripts/centos/networking.sh",
-        "scripts/common/vagrant.sh",
         "scripts/centos/cleanup.sh",
         "scripts/centos/grubfix.sh",
         "scripts/common/minimize.sh"
@@ -109,6 +145,11 @@
     "name": "centos-7.3",
     "no_proxy": "{{env `no_proxy`}}",
     "template": "breed-centos-7.3-x86_64",
-    "version": "0.3.0"
+    "version": "0.3.0",
+    "packer_ak": "{{ env `PACKER_AK`}}",
+    "packer_sk": "{{ env `PACKER_SK`}}",
+    "aws_account": "{{ env `AWS_ACCOUNT_ID` }}",
+    "aws_cert":   "{{ env `HOME` }}/.aws/x509/packer.key",
+    "aws_key":    "{{ env `HOME` }}/.aws/x509/packer.crt"
   }
 }
