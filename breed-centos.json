@@ -103,11 +103,18 @@
         "scripts/common/sshd.sh",
         "scripts/common/metadata.sh",
         "scripts/centos/networking.sh",
-        "scripts/centos/cleanup.sh",
-        "scripts/centos/grubfix.sh",
-        "scripts/common/minimize.sh"
+        "scripts/centos/grubfix.sh"
       ],
       "type": "shell"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "scripts": [
+        "scripts/centos/cleanup.sh",
+        "scripts/common/minimize.sh"
+      ],
+      "except": ["amazon-instance"]
     },
     {
       "type": "ansible",
