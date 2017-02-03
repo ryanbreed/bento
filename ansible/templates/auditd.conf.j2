@@ -1,10 +1,6 @@
-#
-# This file controls the configuration of the audit daemon
-#
-
 local_events = yes
-write_logs = no
-log_format = ENRICHED
+write_logs = {{ audit_write_local }}
+log_format = {{ audit_log_format }}
 priority_boost = 4
 disp_qos = lossy
 dispatcher = /sbin/audispd

@@ -85,12 +85,12 @@
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "scripts": [
-        "scripts/aws/selinux.sh",
-        "scripts/aws/packages.sh",
-        "scripts/aws/vagrant.sh"
+        "scripts/aws/install_amitools.sh",
+        "scripts/aws/adduser_vagrant.sh"
       ]
     },
     {
+      "type": "shell",
       "environment_vars": [
         "HOME_DIR=/home/vagrant",
         "BENTO_NAME={{ user `name`}}",
@@ -101,36 +101,52 @@
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "scripts": [
+        "scripts/centos/disable_ipv6_grub.sh",
+        "scripts/centos/disable_selinux.sh",
         "scripts/common/sshd.sh",
-        "scripts/common/metadata.sh",
-        "scripts/centos/networking.sh",
-        "scripts/centos/grubfix.sh"
+        "scripts/common/metadata.sh"
+      ]
+    },
+    {
+      "type": "ansible",
+      "playbook_file":"./ansible/base_box.yml",
+      "extra_arguments": [
+        "--become",
+        "--become-method=sudo"
       ],
-      "type": "shell"
+      "ansible_env_vars": [
+        "BENTO_NAME={{ user `name`}}",
+        "BENTO_BOX={{ user `box_basename`}}",
+        "BENTO_TEMPLATE={{ user `template`}}",
+        "BENTO_VERSION={{ user `version`}}",
+        "BENTO_TIMESTAMP={{ user `build_timestamp`}}",
+        "ANSIBLE_HOST_KEY_CHECKING=False",
+        "ANSIBLE_SSH_ARGS='-o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'",
+        "ANSIBLE_NOCOLOR=True"
+      ]
     },
     {
       "type": "shell",
+      "except": ["amazon-instance"],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "scripts": [
         "scripts/centos/cleanup.sh",
         "scripts/common/minimize.sh"
-      ],
-      "except": ["amazon-instance"]
-    },
-    {
-      "type": "ansible",
-      "playbook_file":"./ansible/audit_stubs.yml"
+      ]
     }
   ],
   "post-processors": [
     {
       "type": "vagrant",
       "output": "builds/{{user `box_basename`}}.box",
-      "vagrantfile_template":"vagrantfile_templates/centos-7.3.rb"
+      "vagrantfile_template":"vagrantfile_templates/centos-7.3.rb",
+      "keep_input_artifact": true
+
     },
     {
       "type":"compress",
-      "output":"/data/export/images/packer_{{.BuilderType}}-{{user `box_basename`}}.tar.gz"
+      "output":"/data/export/images/packer_{{.BuilderType}}-{{user `box_basename`}}.tar.gz",
+      "keep_input_artifact": true
     }
   ],
   "variables": {
