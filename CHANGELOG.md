@@ -1,5 +1,175 @@
 # Change Log
 
+## [201803.24.0](https://github.com/chef/bento/tree/201803.24.0) (2018-03-24)
+
+**New Platforms**
+- Ubuntu 18.04 (pre-release)
+- HardenedBSD 11
+- FreeBSD 10/11 32bit
+
+**Improvements**
+- Ubuntu 16.04+ and Debian 9: fix issues with disabling predictable interface names
+- Ubuntu/Debian: further mitigate apt locks at startup
+- Multiple platforms: cleanup errant \*.iso files
+- OpenSUSE Leap: disable Snappter/btrfs snapshots, increase disk size
+
+**Tooling**
+- VirtualBox 5.2.6 (Note: we are not using 5.2.8)
+- Parallels 13.3.0
+- VMware Fusion 10.1.1
+- Packer 1.2.1
+- Vagrant 2.0.3
+- Hyper-V 10.0.16299.15
+
+## [201802.02.0](https://github.com/chef/bento/tree/201802.02.0) (2018-02-02)
+
+**Improvements**
+- Ubuntu: remove linux-firmware bloat w/o removing package and breaking upgrades
+- macOS: enable autologin for vagrant user
+
+**EOL**
+- Ubuntu 17.04
+- Windows Nano TP3
+
+**Tooling**
+- VirtualBox 5.2.6
+- Parallels 13.2.0
+- VMware Fusion 10.1.1
+- Packer 1.1.3
+- Vagrant 2.0.1
+
+## [201801.05.0](https://github.com/chef/bento/tree/201801.05.0) (2018-01-05)
+
+**New Platforms**
+- Oracle Linux 7.4
+
+**Tooling**
+- VirtualBox 5.2.4
+- Parallels 13.2.0
+- Packer 1.1.3
+- Vagrant 2.0.1
+
+## [201801.02.0](https://github.com/chef/bento/tree/201801.02.0) (2018-01-02)
+
+**New Platforms**
+- Debian 9.3
+- Debian 8.10
+- Fedora 27
+
+**Hyper-V Boxes (experimental)**
+- centos-7.4
+- centos-6.9
+- ubuntu-17.10
+- ubuntu-17.04
+- ubuntu-16.04
+- ubuntu-14.04
+
+**Tooling**
+- VirtualBox 5.2.4
+- VMware Fusion 10.1.0
+- Parallels 13.2.0
+- Hyper-V 10.0.16299.15
+- Packer 1.1.3
+- Vagrant 2.0.1
+
+## [201710.31.0](https://github.com/chef/bento/tree/201710.31.0) (2017-10-31)
+
+**New Platforms**
+- Ubuntu 17.10
+- Debian 9.2
+- Debian 8.10
+- FreeBSD 10.4
+- CentOS 7.4
+
+**Tooling**
+- VirtualBox 5.1.30
+- VMware Fusion 10.0.1
+- Parallels 13.1.1
+- Packer 1.1.1
+- Vagrant 2.0.0
+
+**Fixes/Updates**
+- SLES fixes
+- 1GB of RAM as default for boxen
+- re-organized into platform folders
+- hyper-V fixes
+- qemu fixes
+
+
+## [201708.22.0](https://github.com/chef/bento/tree/201708.22.0) (2017-08-22)
+
+**New**
+- Debian 9.1
+- Debian 8.9
+- FreeBSD 11.1
+
+**Improvements**
+- Top level slugs for point release platforms, i.e. centos-7 -> centos-7.3
+- Move to date based versioning scheme `YYYYMM.DD.PATCH`
+- Automatically update RHEL-ish platforms as we do with other platforms
+
+**Tooling**
+- VirtualBox 5.1.26
+- VMware Fusion 8.5.8
+- VMware Workstation 12.5.7
+- Parallels 13.0.0
+- Packer 1.0.4
+
+## [2.3.8](https://github.com/chef/bento/tree/2.3.8) (2017-07-20)
+
+**New**
+- Fedora 26
+
+**Improvements**
+- Suppress VMX whitelisting warning by removing interfaces at end of build
+- Use archive.ubuntu.com instead of US specific domain
+- Latest Tooling
+  - VirtualBox 5.1.24
+  - VMware Fusion 8.5.8
+  - Parallels 12.2.1
+  - Packer 1.0.3
+
+## [2.3.7](https://github.com/chef/bento/tree/2.3.7) (2017-07-03)
+
+**New**
+- Debian 8.8
+- Debian 9.0 [\#818](https://github.com/chef/bento/pull/818)
+- Oracle 6.9
+- Ubuntu 17.04 [\#808](https://github.com/chef/bento/pull/808)
+
+**Removed**
+- OmniOS
+- Ubuntu 12.04
+- SLES 12 / 12 SP1
+
+**Fixes**
+- Fedora cleanup and size reduction
+
+## [2.3.6](https://github.com/chef/bento/tree/2.3.6) (2017-05-03)
+
+- Release for fixed VirtualBox 5.1.22
+
+## [2.3.5](https://github.com/chef/bento/tree/2.3.5) (2017-04-24)
+
+- Release primarily around broken VirtualBox 5.1.20/21 (fixed)
+
+**New**
+- CentOS 6.9 [\#788](https://github.com/chef/bento/pull/788)
+
+**Fixes**
+- Oracle 6.8 `box_basename` [\#784](https://github.com/chef/bento/pull/784)
+- MacOS 10.12 issue w/ memory var [\#768](https://github.com/chef/bento/pull/768)
+
+## [2.3.4](https://github.com/chef/bento/tree/2.3.4) (2017-03-23)
+
+- Mostly rebuilt for updated hypervisors: VirtualBox 5.1.18 and VMware Fusion 8.5.5
+- Better cleanup for Fedora boxes
+
+## [2.3.3](https://github.com/chef/bento/tree/2.3.3) (2017-02-19)
+
+**Added and Updated Platforms**
+- Debian 8.7
+
 ## [2.3.2](https://github.com/chef/bento/tree/2.3.2) (2016-12-19)
 [Full Changelog](https://github.com/chef/bento/compare/2.3.1...2.3.2)
 

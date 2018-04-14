@@ -9,10 +9,11 @@ packer.log
 *.variables.json
 /builds/
 .kitchen
-.kitchen.*.yml
+.kitchen.yml
 Gemfile.lock
 /log/
 /ansible/roles_galaxy/
 **/*.swp
 /ansible/ssh/keys/*.pub
 /.idea/
+bootstrap.sh

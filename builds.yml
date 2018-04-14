@@ -5,90 +5,40 @@ providers:
   - vmware-iso
 
 public:
-  centos:
-    '5.11':
-    - x86_64
-    - i386
-    '6.8':
-    - x86_64
-    - i386
-    '7.3':
-    - x86_64
-  debian:
-    '7.11':
-    - amd64
-    - i386
-    '8.6':
-    - amd64
-    - i386
-  fedora:
-    '23':
-    - x86_64
-    '24':
-    - x86_64
-    '25':
-    - x86_64
-  freebsd:
-    '9.3':
-    - amd64
-    '10.3':
-    - amd64
-    '11.0':
-    - amd64
-  omnios:
-    r151018:
-    - amd64
-  opensuse:
-    '13.2':
-    - x86_64
-    - i386
-  opensuse-leap:
-    '42.2':
-    - x86_64
-  oracle:
-    '5.11':
-    - x86_64
-    - i386
-    '6.8':
-    - x86_64
-    - i386
-    '7.3':
-    - x86_64
-  ubuntu:
-    '12.04':
-    - amd64
-    - i386
-    '14.04':
-    - amd64
-    - i386
-    '16.04':
-    - amd64
-    - i386
-    '16.10':
-    - amd64
-    - i386
+- 'centos-7.4'
+- 'centos-6.9'
+- 'centos-6.9-i386'
+- 'oracle-7.4'
+- 'oracle-6.9'
+- 'oracle-6.9-i386'
+- 'ubuntu-18.04'
+- 'ubuntu-17.10'
+- 'ubuntu-17.10-i386'
+- 'ubuntu-16.04'
+- 'ubuntu-16.04-i386'
+- 'ubuntu-14.04'
+- 'ubuntu-14.04-i386'
+- 'debian-9.4'
+- 'debian-9.4-i386'
+- 'debian-8.10'
+- 'debian-8.10-i386'
+- 'debian-7.11'
+- 'debian-7.11-i386'
+- 'fedora-27'
+- 'fedora-26'
+- 'opensuse-leap-42.3'
+- 'freebsd-11.1'
+- 'freebsd-11.1-i386'
+- 'freebsd-10.4'
+- 'freebsd-10.4-i386'
+- 'hardenedbsd-11'
 
-private:
-  rhel:
-    '5.11':
-    - x86_64
-    - i386
-    '6.8':
-    - x86_64
-    - i386
-    '7.3':
-    - x86_64
-
-broken:
-  - omnios-r151018-vmware-iso
-  - omnios-r151018-parallels-iso
-  - opensuse-leap-42.1-x86_64-parallels-iso
-  - opensuse-13.2-i386-vmware-iso
-  - opensuse-13.2-x86_64-vmware-iso
-  - centos-5.11-x86_64-virtualbox-iso
-  - centos-5.11-i386-virtualbox-iso
-
-no_shared_folder:
-  - freebsd-10.3-amd64-all
-  - freebsd-9.3-amd64-all
-  - omnios-r151018-all
+slugs:
+  'centos-7': 'centos-7.4'
+  'centos-6': 'centos-6.9'
+  'debian-9': 'debian-9.4'
+  'debian-8': 'debian-8.10'
+  'debian-7': 'debian-7.11'
+  'freebsd-11': 'freebsd-11.1'
+  'freebsd-10': 'freebsd-10.4'
+  'opensuse-leap-42': 'opensuse-leap-42.3'
